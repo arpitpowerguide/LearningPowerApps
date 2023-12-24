@@ -63,7 +63,7 @@ function CheckPremiumCustomer(executionContext)
     }
 }
 
-function openApprovalPage(primaryControl, primaryControlId)
+function openApprovalPage(primaryControl)
 {
     var formContext = primaryControl;
     var caseId = formContext.data.entity.getId().replace("{", "").replace("}", "");
