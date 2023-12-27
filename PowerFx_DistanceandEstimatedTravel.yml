@@ -1,0 +1,46 @@
+"Distance: "&With(
+     {
+        varLengthMeters: Map.RouteDirection.LengthInMeters
+    },
+    If(
+        varLengthMeters>1000000, Text(varLengthMeters/1000, "#,##0")&" km",
+        varLengthMeters>0, Text(varLengthMeters/1000, "#,##0.0")&" km",
+        Text(varLengthMeters, "0")&" m"
+    )
+)&", Estimate Travel Time: "&With(
+    {
+        varTravelTime: Time(
+            0,
+            0,
+            Map.RouteDirection.TravelTimeInSeconds
+        )
+    },
+    With(
+        {
+            varHours: Hour(varTravelTime),
+            varMinutes: Mod(
+                Minute(varTravelTime),
+                60
+            )
+        },
+        Coalesce(
+            Concatenate(
+                If(
+                    varHours <> 0,
+                    Text(
+                        varHours,
+                        "0"
+                    ) & " hr "
+                ),
+                If(
+                    varMinutes <> 0,
+                    Text(
+                        varMinutes,
+                        "0"
+                    ) & " min"
+                )
+            ),
+            "0 hr"
+        )
+    )
+)
